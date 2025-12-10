@@ -74,7 +74,7 @@ async function cargarCapasPersonalizadas() {
       type: "line",
       source: "concesiones",
       paint: {
-        "line-color": "#FF5733",
+        "line-color": "#2a37a5",
         "line-width": 3.5,
         "line-opacity": 1
       }
