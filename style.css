@@ -1,0 +1,396 @@
+/* 🌍 Estilos generales */
+body, html {
+  margin: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+/* 🔷 Encabezado */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #2a37a5;
+  padding: 10px 15px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1001;
+  height: 70px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+header img {
+  position: absolute;
+  left: 20px;
+  height: 50px;
+}
+
+header h1 {
+  color: white;
+  margin: 0;
+  font-size: 30px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+header h2 {
+  color: #ffffffd9; /* blanco con leve transparencia */
+  margin: 0;
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+
+/* 🔽 Selector de concesión */
+select { 
+  position: absolute;
+  top: 85px;
+  left: 350px;
+  z-index: 1000;
+  padding: 5px;
+  font-size: 13px;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+/* 🗺️ Mapa */
+#map {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  width: 100%;
+}
+
+/* 🧭 Botón flotante para cambiar base */
+.boton-flotante {
+  position: absolute;
+  top: 85px;
+  left: 240px;
+  background: #004b87;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 1000;
+  font-size: 13px;
+  transition: background 0.2s;
+}
+
+.boton-flotante:hover {
+  background: #0366c0;
+}
+
+/* 📋 Lista de estilos base */
+#lista-bases {
+  background: #ffffff;
+  border: 1px solid #ccc;
+  padding: 4px 6px;
+  border-radius: 5px;
+  position: absolute;
+  top: 117px;
+  left: 240px;
+  z-index: 1000;
+  box-shadow: 0 3px 4px rgba(0,0,0,0.2);
+}
+
+.oculto {
+  display: none;
+}
+
+#lista-bases label {
+  font-size: 11px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  gap: 1.5px; /* pequeño espacio entre radio y texto */
+}
+
+#lista-bases input[type="radio"] {
+  margin: 0;
+  padding: 0;
+  transform: scale(0.9); /* opcional: reduce un poco el tamaño del radio */
+}
+
+/* 🧾 Panel lateral */
+#info-panel {
+  position: fixed;
+  top: 90px;
+  right: 0;
+  width: 360px;
+  height: calc(100vh - 90px);
+  background: #ffffff;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  z-index: 1002;
+  overflow-y: auto;
+
+  transform: translateX(100%);
+  transition: transform 0.4s ease;
+}
+
+#info-panel.visible {
+  transform: translateX(0);
+}
+
+/* 🅧 Botón cerrar */
+#close-panel {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 26px;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.2s;
+}
+
+#close-panel:hover {
+  color: #004b87;
+}
+
+/* 🔹 Títulos dentro del panel */
+#info-panel h2 {
+  font-size: 18px;
+  color: #004b87;
+  margin-top: 0px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #004b87;
+  padding-bottom: 5px;
+  text-align: left;
+}
+
+/* 🔸 Contenido informativo */
+#info-content p {
+  margin: 10px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+#info-content strong {
+  color: #004b87;
+}
+
+/* 📊 Gráfico */
+#graficoCultivos {
+  display: block;
+  width: 100%;
+  height: 200px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fafafa;
+  padding: 8px;
+}
+
+
+
+
+
+/* 📄 CONTENEDOR GENERAL */
+.resumen-cultivos {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+/* 🔹 Estilo base para todas las tarjetas */
+.tarjeta {
+  background-color: #ffffff;
+  border-radius: 14px;
+  width: 260px;              /* ← mismo ancho para todas */
+  box-shadow: 0 3px 6px rgba(0,0,0,0.12);
+  transition: transform 0.2s ease;
+}
+
+.tarjeta:hover {
+  transform: scale(1.02);
+}
+
+/* ==========================
+   🔵 TARJETA 1 – TOTAL CULTIVADO
+   ========================== */
+/* 🔵 Tarjeta principal (TOTAL CULTIVADO) */
+.tarjeta.total {
+  text-align: center;
+  padding: 14px 45px;
+  box-shadow: 0 0 14px rgba(0, 123, 255, 0.35);
+  color: #007bff;
+  border: none;
+}
+
+/* Título dentro de la tarjeta */
+.tarjeta.total .titulo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+/* Número principal (centrado y sin línea) */
+.tarjeta.total h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-left: 55px;               /* centrado horizontal */
+  line-height: 1.2;
+  border-bottom: none !important; /* elimina línea heredada */
+  padding-bottom: 0 !important;   /* elimina espacio de la línea */
+  text-decoration: none;
+}
+
+/* ==========================
+   🟢 TARJETA 2 – MOSAICO AGROPECUARIO
+   ========================== */
+.tarjeta.mosaico {
+  text-align: center;
+  padding: 10px 45px;         /* ← más baja */
+  box-shadow: 0 0 10px rgba(122, 175, 24, 0.35);
+  color: #7aaf18;
+}
+
+.tarjeta.mosaico .titulo {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.tarjeta.mosaico h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* ==========================
+   🟩 TARJETA 3 – OTROS CULTIVOS
+   ========================== */
+.tarjeta.otros {
+  text-align: center;
+  padding: 10px 45px;         /* ← igual que mosaico */
+  box-shadow: 0 0 10px rgba(24, 143, 54, 0.35);
+  color: #188f36;
+}
+
+.tarjeta.otros .titulo {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.tarjeta.otros h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+
+
+
+
+
+/* 📦 PANEL DE CAPAS */
+#panel-capas {
+  position: absolute;
+  z-index: 9999;
+  top: 120px;
+  left: 10px;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 12px 14px;
+  width: 320px;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  max-height: 75vh;
+  overflow-y: auto;
+  border-left: 4px solid #004b87;
+  display: none; /* oculto por defecto */
+}
+
+
+
+/* Título de grupo desplegable */
+summary {
+  cursor: pointer;
+  font-weight: 700;
+  padding: 8px 0;
+  color: #004b87;
+  font-size: 15px;
+  border-bottom: 1px solid #ddd;
+  transition: color 0.2s, padding-left 0.2s;
+}
+
+summary:hover {
+  color: #0366c0;
+  padding-left: 4px;
+}
+
+/* Checkbox de subcapas */
+.subcapa-item {
+  margin-left: 20px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 0;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.subcapa-item:hover {
+  background: rgba(0, 75, 135, 0.08);
+  border-radius: 6px;
+}
+
+/* Estilo para scrollbar */
+.panel-capas::-webkit-scrollbar {
+  width: 8px;
+}
+
+.panel-capas::-webkit-scrollbar-track {
+  background: #eee;
+  border-radius: 4px;
+}
+
+.panel-capas::-webkit-scrollbar-thumb {
+  background: #004b87;
+  border-radius: 4px;
+}
+
+
+.btn-hamburguesa {
+  position: absolute;
+  top: 85px;
+  left: 10px;
+  background: #004b87;
+  color: white;
+  border: none;
+  padding: 5px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 1000;
+  font-size: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: background 0.2s;
+}
+
+.btn-hamburguesa:hover {
+  background: #0366c0;
+}
+
+#panel-capas.visible {
+  display: block; /* se muestra al agregar la clase */
+}
